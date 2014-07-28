@@ -29,6 +29,7 @@ static NSString *uID = @"michael.crump@telerik.com";
 {
     [super viewDidLoad];
     
+    
     _platformFeedbackSource = [[TKPlatformFeedbackSource alloc] initWithKey:apiKey uid:uID];
     TKFeedbackController *feedbackController = (TKFeedbackController*)self.view.window.rootViewController;
     feedbackController.dataSource = _platformFeedbackSource;
