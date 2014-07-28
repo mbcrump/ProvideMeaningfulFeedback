@@ -23,6 +23,8 @@ static NSString *apiKey = @"fe8f2b80-1683-11e4-8bdd-c93833da7c1e";
 //user id used to send feedback to Telerik AppFeedback service
 static NSString *uID = @"michael.crump@telerik.com";
 
+
+
 @implementation ViewController
 
 
@@ -30,6 +32,16 @@ static NSString *uID = @"michael.crump@telerik.com";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+}
+
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
+- (IBAction)sendFeedbackManually:(id)sender {
     
     UIStoryboard *MainStoryboard = [UIStoryboard storyboardWithName:@"Main"
                                                              bundle: nil];
@@ -42,28 +54,11 @@ static NSString *uID = @"michael.crump@telerik.com";
     TKFeedbackController *feedbackController = [[TKFeedbackController alloc] init];
     feedbackController.dataSource = [[TKPlatformFeedbackSource alloc] initWithKey:apiKey uid:uID];
     feedbackController.contentController = navigationController;
+
     
     self.view.window.rootViewController = feedbackController;
-
-    
-    /*
-    
-    _platformFeedbackSource = [[TKPlatformFeedbackSource alloc] initWithKey:apiKey uid:uID];
-    TKFeedbackController *feedbackController = (TKFeedbackController*)self.view.window.rootViewController;
-    feedbackController.dataSource = _platformFeedbackSource;
-     
-     */
-}
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
-- (IBAction)sendFeedbackManually:(id)sender {
-    TKFeedbackController *feedbackController = (TKFeedbackController*)self.view.window.rootViewController;
     [feedbackController showFeedback];
     
 }
+
 @end
