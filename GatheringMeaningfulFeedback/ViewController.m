@@ -9,10 +9,12 @@
 #import "ViewController.h"
 #import <TelerikUI/TelerikUI.h>
 
+
 @interface ViewController ()
 {
     TKPlatformFeedbackSource *_platformFeedbackSource;
 }
+
 @end
 
 //api key used to work with Telerik AppFeedback service
@@ -29,10 +31,28 @@ static NSString *uID = @"michael.crump@telerik.com";
 {
     [super viewDidLoad];
     
+    UIStoryboard *MainStoryboard = [UIStoryboard storyboardWithName:@"Main"
+                                                             bundle: nil];
+    
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[ MainStoryboard instantiateViewControllerWithIdentifier:@"Main"]];
+    navigationController.navigationBar.translucent = NO;
+    
+    
+    TKFeedbackController *feedbackController = [[TKFeedbackController alloc] init];
+    feedbackController.dataSource = [[TKPlatformFeedbackSource alloc] initWithKey:apiKey uid:uID];
+    feedbackController.contentController = navigationController;
+    
+    self.view.window.rootViewController = feedbackController;
+
+    
+    /*
     
     _platformFeedbackSource = [[TKPlatformFeedbackSource alloc] initWithKey:apiKey uid:uID];
     TKFeedbackController *feedbackController = (TKFeedbackController*)self.view.window.rootViewController;
     feedbackController.dataSource = _platformFeedbackSource;
+     
+     */
 }
 
 
